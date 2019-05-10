@@ -4,14 +4,13 @@ use ieee.std_logic_1164.all;
 entity contador is
 port(
 		clk : in std_logic;
-		Q   : out std_logic_vector(3 downto 0));
+		saida : out std_logic_vector(3 downto 0)
+	  );
 end contador;
 
 architecture archContador of contador is
-
-signal Qs : std_logic_vector(3 downto 0) := "0000";
-signal sClear : std_logic;
-
+signal Q : std_logic_vector(3 downto 0);
+signal J, K : std_logic_vector(3 downto 0);
 component FlipFlopJK is
 port(
 		J, K: in std_logic;
@@ -24,16 +23,29 @@ end component;
 
 begin
 
-	cont0: FlipFlopJK port map('0','0', '1', sClear,   clk, Qs(0));
-	cont1: FlipFlopJK port map('0','0', '1', sClear, Qs(0), Qs(1));
-	cont2: FlipFlopJK port map('0','0', sClear, '1', Qs(1), Qs(2));
-	cont3: FlipFlopJK port map('0','0', sClear, '1', Qs(2), Qs(3));
+	Q0 : FlipFlopJK port map(J(0), K(0), '1', '1', clk, Q(0));
+	Q1 : FlipFlopJK port map(J(1), K(1), '1', '1', clk, Q(1));
+	Q2 : FlipFlopJK port map(J(2), K(2), '1', '1', clk, Q(2));
+	Q3 : FlipFlopJK port map(J(3), K(3), '1', '1', clk, Q(3));
 	
-	Q <= Qs;
-	sClear <= not(Qs(3) and Qs(2) and (not(Qs(1))) and Qs(0));
+	J(0) <= '0';
+	K(0) <= Q(3) xor Q(1);
+	J(1) <= (not(Q(3)) and Q(0)) or (Q(3) and Q(2)); 
+	K(1) <= '0';
+	J(2) <= (not(Q(3)) and not(Q(2))) and (Q(1) xnor Q(0));
+	K(2) <= '0';
+	J(3) <= not(Q(3) or Q(2));
+	K(3) <= not(Q(3) and Q(2) and Q(1) and Q(0));
 	
-
+	saida <= Q;
 end archContador;
+
+
+
+
+
+
+
 
 
 
