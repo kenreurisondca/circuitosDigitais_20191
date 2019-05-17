@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C35F672C6
-set_global_assignment -name TOP_LEVEL_ENTITY contador2
+set_global_assignment -name TOP_LEVEL_ENTITY memoriacompleta
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:00:48  APRIL 24, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.0
@@ -50,12 +50,6 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
-set_global_assignment -name VHDL_FILE latchRS.vhd
-set_global_assignment -name VHDL_FILE latchD.vhd
-set_global_assignment -name VHDL_FILE FlipFlopJK.vhd
-set_global_assignment -name VHDL_FILE contador.vhd
-set_global_assignment -name VHDL_FILE latchSR.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE latchSRWave.vwf
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
@@ -64,8 +58,16 @@ set_location_assignment PIN_AC22 -to Q[3]
 set_location_assignment PIN_AB21 -to Q[2]
 set_location_assignment PIN_AF23 -to Q[1]
 set_location_assignment PIN_AE23 -to Q[0]
-set_global_assignment -name VECTOR_WAVEFORM_FILE output_files/contadorWave.vwf
 set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "C:/Users/Administrador/Documents/circuitosDigitais_20191/Sequenciais/output_files/contadorWave.vwf"
+set_global_assignment -name VHDL_FILE memoriacompleta.vhd
+set_global_assignment -name VHDL_FILE memoria.vhd
+set_global_assignment -name VHDL_FILE latchRS.vhd
+set_global_assignment -name VHDL_FILE latchD.vhd
+set_global_assignment -name VHDL_FILE FlipFlopJK.vhd
+set_global_assignment -name VHDL_FILE contador.vhd
+set_global_assignment -name VHDL_FILE latchSR.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE latchSRWave.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE output_files/contadorWave.vwf
 set_global_assignment -name VHDL_FILE contador2.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
